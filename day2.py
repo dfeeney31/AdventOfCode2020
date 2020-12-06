@@ -22,9 +22,9 @@ def passwordLegitComplex(line):
     letter = policy[-1]
     low, high = [int(item) for item in indices.split('-')]
     
-    if (password[low+1] == letter) & (password[high+1] != letter):
+    if (password[low-1] == letter) & (password[high-1] != letter):
         return True
-    elif (password[low+1] != letter) & (password[high+1] == letter):
+    elif (password[low-1] != letter) & (password[high-1] == letter):
         return True
     return False
     

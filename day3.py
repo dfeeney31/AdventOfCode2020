@@ -13,12 +13,12 @@ currentX = 0
 slopeX = 3
 slopeY = 1
 
-## Each line is 32 long, so each time you get to the end, the next x index is
-## 0 + remainder 
+## Each line is 32 long, so each time you get to an X position of 32, 
+## the next x index is 0 + remainder in the X position 
 
 # preallocate trees
 trees = 0
-for currentY, currentLine in enumerate(lines):
+for yPosition, currentLine in enumerate(lines):
     if currentLine[currentX] == "#":
         trees+=1
     currentX = (currentX + slopeX) % len(currentLine[:-1])

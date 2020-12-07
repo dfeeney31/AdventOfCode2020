@@ -19,9 +19,9 @@ for (i in c(1:199)){
     tmpVal2 <- dat[j,]
     for (k in c(1:199)){
       tmpVal3 <- dat[k,]
-    }
       if (tmpVal + tmpVal2 + tmpVal3 == 2020) {
         print(tmpVal * tmpVal2 * tmpVal3)
+      }
     }
   }
 }

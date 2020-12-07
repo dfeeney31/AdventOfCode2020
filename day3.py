@@ -16,7 +16,7 @@ slopeY = 1
 ## Each line is 32 long, so each time you get to an X position of 32, 
 ## the next x index is 0 + remainder in the X position 
 
-# solution 2
+# solution 1 function 
 def calcNoTrees(treeField, slopeX, currentX):
 
     trees = 0
@@ -26,6 +26,36 @@ def calcNoTrees(treeField, slopeX, currentX):
         currentX = (currentX + slopeX) % len(currentLine[:-1])
     return trees
 
-xSlopes = [1,3,5,7]
+#Solution 1
+xSlopes = [3]
 number_list = [ calcNoTrees(lines, x, 0) for x in xSlopes ]
 print(number_list)
+
+
+
+# solution 2 function 
+
+def calcNoTrees(treeField, slopeX, currentX, ySlope):
+    
+    trees = 0
+    if ySlope == 1:
+        for yPosition, currentLine in enumerate(lines):            
+            if currentLine[currentX] == "#":
+                trees+=1
+            currentX = (currentX + slopeX) % len(currentLine[:-1])
+            
+    elif ySlope != 1:
+        for yPosition, currentLine in enumerate(lines): 
+            
+            if currentLine[currentX] == '#':
+                trees =+ 1
+            currentX = (currentX + slopeX) % len(currentLine[:-1])
+    return trees
+
+
+#Solution 2
+xSlopes = [1,3,5,7]
+number_list = [ calcNoTrees(lines, x,0,1) for x in xSlopes ]
+print(number_list)
+
+calcNoTrees(lines, 1, 0, 2)

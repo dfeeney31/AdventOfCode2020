@@ -44,18 +44,27 @@ def calcNoTrees(treeField, slopeX, currentX, ySlope):
                 trees+=1
             currentX = (currentX + slopeX) % len(currentLine[:-1])
             
+    # this part not working         
     elif ySlope != 1:
-        for yPosition, currentLine in enumerate(lines): 
-            
+        for currentLine in range(0,len(lines),ySlope):
             if currentLine[currentX] == '#':
                 trees =+ 1
             currentX = (currentX + slopeX) % len(currentLine[:-1])
     return trees
 
+ySlope = 2
+currentX = 0
+trees = 0
+for currentLine in range(0,len(lines),ySlope):
+    tmpLine = lines[currentLine]
+    currentX = currentX % len(tmpLine[:-1])
+    if tmpLine[currentX] == '#':
+        trees =+ 1
+print(trees)
 
 #Solution 2
 xSlopes = [1,3,5,7]
 number_list = [ calcNoTrees(lines, x,0,1) for x in xSlopes ]
 print(number_list)
-
-calcNoTrees(lines, 1, 0, 2)
+import numpy as np
+np.prod(number_list)

@@ -16,11 +16,16 @@ slopeY = 1
 ## Each line is 32 long, so each time you get to an X position of 32, 
 ## the next x index is 0 + remainder in the X position 
 
-# preallocate trees
-trees = 0
-for yPosition, currentLine in enumerate(lines):
-    if currentLine[currentX] == "#":
-        trees+=1
-    currentX = (currentX + slopeX) % len(currentLine[:-1])
-print(f"Solution 1:{trees}")
+# solution 2
+def calcNoTrees(treeField, slopeX, currentX):
 
+    trees = 0
+    for yPosition, currentLine in enumerate(lines):
+        if currentLine[currentX] == "#":
+            trees+=1
+        currentX = (currentX + slopeX) % len(currentLine[:-1])
+    return trees
+
+xSlopes = [1,3,5,7]
+number_list = [ calcNoTrees(lines, x, 0) for x in xSlopes ]
+print(number_list)

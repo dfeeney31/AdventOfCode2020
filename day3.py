@@ -52,19 +52,38 @@ def calcNoTrees(treeField, slopeX, currentX, ySlope):
             currentX = (currentX + slopeX) % len(currentLine[:-1])
     return trees
 
-ySlope = 2
-currentX = 0
-trees = 0
-for currentLine in range(0,len(lines),ySlope):
-    tmpLine = lines[currentLine]
-    currentX = currentX % len(tmpLine[:-1])
-    if tmpLine[currentX] == '#':
-        trees =+ 1
-print(trees)
-
 #Solution 2
 xSlopes = [1,3,5,7]
 number_list = [ calcNoTrees(lines, x,0,1) for x in xSlopes ]
 print(number_list)
 import numpy as np
 np.prod(number_list)
+
+# traverse the Y slope 
+ySlope = 2
+currentX = 0
+trees = 0
+for currentLine in range(0,len(lines),ySlope):
+    tmpLine = lines[currentLine]
+    if tmpLine[currentX] == '#':
+        trees =+ 1
+    currentX = (currentX + 1) % 31
+print(trees)
+
+### online solution 
+slopes = [(1,1), (3,1), (5,1), (7,1), (1,2)]
+mult_trees=1
+for slope in slopes:
+    print("Slope: ", slope)
+    slope_x, slope_y=slope
+    trees = 0
+    curr_x = 0
+    for curr_y, each_line in enumerate(lines):
+        if curr_y%slope_y == 0: #if current y equals slope 0, do nothing 
+
+            if each_line[curr_x] == "#":
+                trees+=1
+            curr_x = (curr_x + slope_x) % len(each_line[:-1])
+    print("Trees on this slope: ", trees)
+    mult_trees*=trees
+print("Solution 2: ", mult_trees)

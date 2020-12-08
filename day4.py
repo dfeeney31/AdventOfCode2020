@@ -21,3 +21,18 @@ for entry in passports:
 validNo
 
        
+passports[0]['byr']
+for entry in passports[0]:
+    for key, val in entry:
+        print(key)
+        print(val)
+        
+def isValid(passport):
+    
+    if not 1920 <= int(passport['byr']) <= 2020:
+        return False
+    if not 2010 <= passport['iyr'] <= 2020: 
+        return False
+    if not 2020 <= passport['eyr'] <= 2030:
+        return False
+    
